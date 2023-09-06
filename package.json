@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "cypress:open": "cypress open",
+    "demoqa:open": "npx cypress open --config-file cypress/configs/demoqa.config.js",
+    "webdriveruniverity:open": "npx cypress open --config-file cypress/configs/webdriveruniverity.config.js",
+    "automationteststore:open": "npx cypress open --config-file cypress/configs/automationteststore.config.js",
+    "cypress:run": "cypress run"
+  },
+  "devDependencies": {
+    "cypress": "^13.1.0"
+  }
+}
