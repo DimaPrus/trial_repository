@@ -9,7 +9,7 @@ module.exports = defineConfig({
     viewportWidth:1600,
     viewportHeight:1000,
     baseUrl: 'http://www.webdriveruniversity.com/',
-    specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
+    specPattern: 'cypress/e2e/**/*spec.cy.{js,jsx,ts,tsx}',
     excludeSpecPattern: ['cypress/e2e/Demoqa', 'cypress/e2e/Testautomationstore', 'cypress/e2e/Mystrength'], 
     setupNodeEvents(on, config) {
       // implement node event listeners here
