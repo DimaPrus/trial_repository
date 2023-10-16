@@ -5,7 +5,7 @@ describe('Autocomplete suite', () => {
         cy.visit('/auto-complete')
         cy.get('#autoCompleteSingleContainer').type('B')
         
-        cy.get('.auto-complete__menu div').each(($color, index, list) => {
+        cy.get('.auto-complete__menu div').each(($color, index) => {
             cy.log($color.text())
             const colorName = $color.text()
             const selectedColor = index
