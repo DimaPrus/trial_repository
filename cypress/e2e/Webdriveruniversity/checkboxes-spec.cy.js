@@ -1,9 +1,11 @@
 /// <reference types='Cypress' />
 
 describe('Text form submitting', () => {
-    it('First test', () => {
+    beforeEach(() => {
         cy.visit('http://www.webdriveruniversity.com/')
         cy.get('#dropdown-checkboxes-radiobuttons').invoke('removeAttr', 'target').click({force:true})
+    })
+    it('First test', () => {
         // First method
         cy.get('#checkboxes').find('[value="option-1"]').check().should('be.checked')
 
@@ -16,14 +18,9 @@ describe('Text form submitting', () => {
 
     // Chalange
     it('Uncheck the checkbox', () => {
-        cy.visit('http://www.webdriveruniversity.com/')
-        cy.get('#dropdown-checkboxes-radiobuttons').invoke('removeAttr', 'target').click({force:true})
         cy.get('#checkboxes input').eq(2).uncheck().should('not.be.checked')
     })
-    it.only('Multiple checkboxes', () => {
-        cy.visit('http://www.webdriveruniversity.com/')
-        cy.get('#dropdown-checkboxes-radiobuttons').invoke('removeAttr', 'target').click({force:true})
-        
+    it('Multiple checkboxes', () => {
         cy.get('[type="checkbox"]').check(["option-1", "option-2", "option-3", "option-4"])
         //const options = ["option-1", "option-2", "option-3", "option-4"]
 
