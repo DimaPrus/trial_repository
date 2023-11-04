@@ -1,19 +1,15 @@
 /// <reference types='Cypress' />
-describe('Iteration', () => {
+describe('Iteration through the elements', () => {
+    beforeEach(() => {
+        cy.selectProductType('Hair Care')
+    })
     it('Select specific item from the list by text', () => {
-            cy.visit('/');
-            cy.get('#categorymenu ul li').contains('Hair Care').click()
-            cy.get('.fixed_wrapper .prdocutname').each(($item, index, $list) => {
-                if($item.text() === 'Eau Parfumee au The Vert Shampoo'){
-                    cy.wrap($item).click()
-                }
-            })
+        cy.selectedItemByText('Curls to straight Shampoo')
     });
     it('Log all items', function(){
-            cy.visit('/');
-            cy.get('#categorymenu ul li').contains('Hair Care').click()
-            cy.get('.fixed_wrapper .prdocutname').each(($item, index, $list) => {
-               cy.log('Item №: ' + index + ' : ' + $item.text())
-            })
+        cy.logAllItems()
         })
+    it('Select other specific item from the Hair Care list', () => {
+        cy.selectedItemByText('Pantene Pro-V Conditioner, Classic Care')
+    })        
 });

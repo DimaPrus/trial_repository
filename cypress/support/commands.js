@@ -34,6 +34,8 @@ Cypress.Commands.add("userLogin", (userEmail, password) => {
   cy.get('[data-test="login.mood.skip"]').click();
 });
 
+
+
 Cypress.Commands.add("userLoginMyStrengthEU", (userEmail, password) => {
   cy.visit("https://app-intltest.mystrength.me/login/").wait(2000);
   cy.get("#login_email").type(userEmail);

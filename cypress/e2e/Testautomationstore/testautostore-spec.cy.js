@@ -1,15 +1,22 @@
 /// <reference types='Cypress' />
 describe('TestAutomationStore suite', () => {
-        it.only('Form submission test', () => {
+        before(function() {
+                cy.fixture('userDetails').as('user')
+        })
+        it('Form submission test', () => {
                 cy.visit('/');
                 cy.get('.info_links_footer').contains('Contact Us').click().then((linkText) => {
                         console.log('The link text is: ' + linkText.text())
                 });
-                cy.get('#ContactUsFrm_first_name').type('Dima');
-                cy.get('#ContactUsFrm_email').type('dima@gmail.com');
-                cy.get('#ContactUsFrm_email').should('have.attr', 'name', 'email')
+
+                // Using alias in fixtures
+                cy.get('@user').then(function(data) {
+                        cy.get('#ContactUsFrm_first_name').type(data.first_name);
+                        cy.get('#ContactUsFrm_email').type(data.email);
+                })
+                cy.get('#ContactUsFrm_email').should('have.attr', 'name', 'email');
                 cy.get('#ContactUsFrm_enquiry').type('Any comment');
-                cy.get('button[title="Submit"]').click()
+                cy.get('button[title="Submit"]').click();
                 cy.get('.contentpanel').find('p').should('have.text', 'Your enquiry has been successfully sent to the store owner!')
         });
         it('Click on the first item', () => {
