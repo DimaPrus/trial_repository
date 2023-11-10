@@ -4,6 +4,7 @@
     "demoqa:open": "npx cypress open --config-file cypress/configs/demoqa.config.js",
     "webdriveruniverity:open": "npx cypress open --config-file cypress/configs/webdriveruniversity.config.js",
     "automationteststore:open": "npx cypress open --config-file cypress/configs/automationteststore.config.js",
+    "xboxachievements:open": "npx cypress open --config-file cypress/configs/xboxachievements.config.js",
     "cypress:run": "cypress run"
   },
   "devDependencies": {
