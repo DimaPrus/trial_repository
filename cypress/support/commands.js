@@ -24,6 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 // import '@testing-library/cypress/add-commands'
+
 Cypress.Commands.add("userLogin", (userEmail, password) => {
   cy.visit("https://app-intltest.mystrength.me/login/");
   cy.get("#login_email").type(userEmail).wait(3000);
