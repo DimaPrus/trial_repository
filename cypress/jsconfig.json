@@ -1,5 +1,11 @@
 {
-    "compilerOptions":{
-        "types": ["cypress"]
+    "compilerOptions": {
+        "checkJs": true,
+        "target": "ESNext",
+        "module": "CommonJS",
+        "resolveJsonModule": true,
+        "types": [
+            "cypress"
+        ]
     }
 }
