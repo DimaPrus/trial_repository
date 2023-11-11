@@ -8,7 +8,7 @@ describe('Text form submitting', () => {
         //     globalThis.file = file;
         // });
     });
-    
+
     beforeEach(() => {
         cy.fixture('example').as('userData');
         homePage.homePageNavigation();
@@ -28,10 +28,10 @@ describe('Text form submitting', () => {
             faker.lorem.paragraph()
         );
         const personEdit = new PersonModel(
-            "FirstNameEdit",
-            "LastNameEdit",
-            "emailEdit@gmail.com",
-            '123'
+            faker.person.firstName(),
+            faker.person.lastName(),
+            faker.internet.email(),
+            faker.lorem.paragraph(2)
         );
 
         formSubmittingPage.fillForm(person);
@@ -43,16 +43,18 @@ describe('Text form submitting', () => {
         formSubmittingPage.submitButton().click();
     });
 
-    it('Negative test for submission', () => {
+    it.only('Negative test for submission', () => {
         cy.get('@userData').then(data => {
             const person = new PersonModel(
                 data['first_name'],
                 data['last_name'],
-                data['email'],
+                data['email']+"@@@",
                 data['comment']
             );
             formSubmittingPage.fillForm(person);
             formSubmittingPage.assertForm(person);
+            formSubmittingPage.resetButton().click();
+
             cy.submitForm(person, 'body', 'Error: Invalid email address');
         });
     });
