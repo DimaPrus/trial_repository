@@ -1,5 +1,6 @@
 import { homePage } from "../../support/pageObjects/HomePage";
 import { PersonModel, formSubmittingPage } from "../../support/pageObjects/FormSubmittingPage";
+import { faker } from '@faker-js/faker';
 
 describe('Text form submitting', () => {
     before(() => {
@@ -21,10 +22,10 @@ describe('Text form submitting', () => {
 
     it('First test', () => {
         const person = new PersonModel(
-            "FirstName",
-            "LastName",
-            "email@gmail.com",
-            '12'
+            faker.person.firstName(),
+            faker.person.lastName(),
+            faker.internet.email(),
+            faker.lorem.paragraph()
         );
         const personEdit = new PersonModel(
             "FirstNameEdit",
