@@ -7,4 +7,4 @@ class HomePage {
     }
 }
 
-export default HomePage;
+export const homePage = new HomePage();

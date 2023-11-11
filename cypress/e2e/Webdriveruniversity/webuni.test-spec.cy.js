@@ -1,23 +1,58 @@
-import  HomePage  from "../../support/pageObjects/Homepage"
-import  FormSubmittingPage  from "../../support/pageObjects/FormSubmittingPage"
-/// <reference types='Cypress' />
+import { homePage } from "../../support/pageObjects/HomePage";
+import { PersonModel, formSubmittingPage } from "../../support/pageObjects/FormSubmittingPage";
 
 describe('Text form submitting', () => {
     before(() => {
-        cy.fixture('example').then((json) => {
-            globalThis.JSON = json
-        })
-    })
+        // cy.fixture('example').then(file => {
+        //     globalThis.file = file;
+        // });
+    });
+    
     beforeEach(() => {
-        const homePage = new HomePage();
-        homePage.homePageNavigation()
-        homePage.submitFormNavigation()
-    })
-    it.only('First test', () => {
-        const formSubmitting = new FormSubmittingPage();
-        formSubmitting.submitTheForm()
-    })
+        cy.fixture('example').as('userData');
+        homePage.homePageNavigation();
+        homePage.submitFormNavigation();
+    });
+
+    // it('First test', () => {
+    //     formSubmittingPage.fillForm();
+    //     formSubmittingPage.submitButton().click();
+    // });
+
+    it('First test', () => {
+        const person = new PersonModel(
+            "FirstName",
+            "LastName",
+            "email@gmail.com",
+            '12'
+        );
+        const personEdit = new PersonModel(
+            "FirstNameEdit",
+            "LastNameEdit",
+            "emailEdit@gmail.com",
+            '123'
+        );
+
+        formSubmittingPage.fillForm(person);
+        formSubmittingPage.assertForm(person);
+        formSubmittingPage.resetButton().click();
+
+        formSubmittingPage.fillForm(personEdit);
+        formSubmittingPage.assertForm(personEdit);
+        formSubmittingPage.submitButton().click();
+    });
+
     it('Negative test for submission', () => {
-        cy.submitForm(JSON.first_name, JSON.last_name, ' ', JSON.comment, 'body', 'Error: Invalid email address')
-    })
-})
+        cy.get('@userData').then(data => {
+            const person = new PersonModel(
+                data['first_name'],
+                data['last_name'],
+                data['email'],
+                data['comment']
+            );
+            formSubmittingPage.fillForm(person);
+            formSubmittingPage.assertForm(person);
+            cy.submitForm(person, 'body', 'Error: Invalid email address');
+        });
+    });
+});
