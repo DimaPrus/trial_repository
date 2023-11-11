@@ -15,7 +15,8 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands';
-import './xbox-commands';
+import 'cypress-if';
+import './webdriveruni-commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

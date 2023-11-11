@@ -1,8 +1,9 @@
 {
     "compilerOptions": {
         "checkJs": true,
-        "module": "commonjs",
-        "target": "ES6",
+        "target": "ESNext",
+        "module": "CommonJS",
+        "resolveJsonModule": true,
         "types": [
             "cypress"
         ]

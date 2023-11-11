@@ -8,6 +8,8 @@
     "cypress:run": "cypress run"
   },
   "devDependencies": {
-    "cypress": "^13.3.1"
+    "@faker-js/faker": "^8.2.0",
+    "cypress": "^13.3.1",
+    "cypress-if": "^1.10.5"
   }
 }
